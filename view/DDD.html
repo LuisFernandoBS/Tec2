@@ -1,0 +1,108 @@
+<html>
+    <head>
+        <title>Operadora</title>
+    </head>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script>
+        function estados() {
+            let estados
+            $.ajax({
+            type: 'GET',
+            async: false,
+            url: 'http://ddd.pricez.com.br/estados.json',
+            dataType: 'json', //tipo do retorno
+            complete: function (data) {
+                estados = data.responseJSON['payload']
+                console.log(data.responseJSON['payload'])
+            }
+            })
+            estados.forEach(elementos => {
+                var x = document.querySelector("#estados");
+                var option = document.createElement("option");
+                option.value = elementos;
+                option.text=elementos;
+                x.add(option);
+            });
+        }
+        function cidades(estado) {
+            let cidades
+            $.ajax({
+            type: 'GET',
+            async: false,
+            url: 'http://ddd.pricez.com.br/estados/'+estado+'.json',
+            dataType: 'json', //tipo do retorno
+            complete: function (data) {
+                cidades = data.responseJSON['payload']
+                console.log(data.responseJSON['payload'])
+            }
+            })
+            cidades.forEach(element => {
+                
+                document.querySelector('#cidades').appendChild(CriaL(element))
+            });
+        }
+        function CriaL(cidade) {
+            let rowCD = document.createElement('td')
+            rowCD.innerText=cidade['cidade']
+            let rowDDD = document.createElement('td')
+            rowDDD.innerText=cidade['ddd']
+            let linha = document.createElement('tr')
+            linha.appendChild(rowCD)
+            linha.appendChild(rowDDD)
+            return linha
+        }
+
+        $(document).ready(function () {
+  $("#search").on("keyup", function () {
+    let value = $(this).val().toLowerCase();
+    $("#TB_Cidades tr").filter(function () {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+    </script>
+    <!-- Barra de Pesquisa -->
+<nav class="uk-navbar-container" uk-navbar>
+    <div class="uk-navbar-left">
+
+        <div class="uk-navbar-item">
+            <form class="uk-search uk-search-navbar">
+                <span uk-search-icon></span>
+                <input class="uk-search-input" type="search" id="search" placeholder="Search...">
+            </form>
+        </div>
+
+    </div>
+</nav>
+
+    <body onload="estados()">
+        <select id="estados" onchange="cidades(this.value)">
+        </select>
+        <!--tabela de cidades-->
+        <table id="TB_Cidades" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+            <thead >
+              <tr id="tituloTabela">
+                <td class="th-sm">
+                    Cidade  <span class="uk-margin-small-right" uk-icon="user"></span>
+                </td>
+                <td class="th-sm">
+                    DDD   <span class="uk-margin-small-right" uk-icon="users"></span>
+                </td>
+                
+              </tr>
+            </thead>
+            <tbody id="cidades" >
+              
+            </tbody>
+            <tfoot>
+              <tr>
+                <th>Cidade
+                </th>
+                <th>DDD
+                </th>
+                
+            </tfoot>
+          </table>
+    </body>
+</html>

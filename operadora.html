@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Operadora</title>
+    </head>
+    <script src="view/js/jquery-3.4.1.min.js"></script>
+    <script src="view/js/jquery.mask.min.js"></script>
+    <script>
+        function pesquisa() {
+            celular=document.querySelector("#A_celular").value
+            celular=UnMask(celular)
+            let operadoras={55351:"Nextel",55314:"Oi",55331:"Oi",55320:"Vivo",55323:"Vivo",55341:"TIM",55321:"Claro",55321:"Claro",55377:"Nextel" }
+            let cod;
+            $.ajax({
+            type: 'POST',
+            async: false,
+            data:{celular:celular},
+            url: 'http://consultas.portabilidadecelular.com/painel/consulta_numero.php?user=stealus&pass=luis123475&search_number='+celular, //caminho do arquivo a ser executado
+            dataType: 'json', //tipo do retorno
+            complete: function (data) {
+                cod = data.responseText
+            }
+            })
+            if(operadoras[cod]!=undefined){
+                document.querySelector("#resposta").src="view/img/"+operadoras[cod]+".png"
+                document.querySelector("#resposta").setAttribute("opr",operadoras[cod])
+            }else{
+                document.querySelector("#resposta").src="view/img/Desconhecida.png"
+                document.querySelector("#resposta").setAttribute("opr","Desconhecida")
+            }
+
+        }
+
+        function MASK() {
+            $("#A_celular").mask("(00) 00009-0000");
+        }
+        function UnMask(puro) {
+            puro = puro.replace('(', '');
+            puro = puro.replace(')', '');
+            puro = puro.replace('-', '');
+            puro = puro.replace(' ', '');
+            return puro
+        }
+
+    </script>
+    <body>
+        <input type="tel" id="A_celular" onkeypress="MASK()" onblur="pesquisa()"  />
+        <img src="view/img/Desconhecida.png" id="resposta" opr="" style="width: 45px;height: 45px;"></img>
+    </body>
+</html>

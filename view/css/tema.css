@@ -1,0 +1,112 @@
+
+#add{
+	position: fixed;
+	right:2%;
+	bottom: 2%;
+	height: 65px;
+	width: 68px;
+}
+#A_celular{
+	width: 50px;
+}
+@font-face {
+    font-family: techniqu;
+    src: url('../fonts/techniqu.ttf');
+}
+@font-face {
+    font-family: Ubuntu;
+    src: url('../fonts/UbuntuTitling-Bold.ttf');
+}
+#nav{
+    background-color: #48D1CC;
+    height: 70px;
+}
+#titulo{
+    font-family: techniqu;
+    font-size: 30px;
+    color: #546A7A;
+    margin-left: 40%;
+    margin-top: 18px;
+}
+#aba{
+    background-color: #546A7A;
+    text-align: center;
+}
+#Iperfil{
+    width: 120px;
+    height: 120px;
+}
+#Nome{  
+    font-family: Ubuntu;
+    margin-top: 18px;
+}
+li{
+    height: 40px;
+}
+.TT{
+    background-color: #546A7A;
+    color: whitesmoke;
+    margin-right: 6%;
+    text-align: center;
+}
+.TG{
+    background-color: #48D1CC;
+}
+#DG1{
+    font-family: Ubuntu;
+    width: 320px;
+    height: 300px;
+    text-align: center;
+    margin-right: 3px;
+    
+}
+#G1{
+    border: turquoise 1px solid;
+}
+#DG2{
+    font-family: Ubuntu;
+    width: 320px;
+    height: 300px;
+    text-align: center;
+    
+}
+#G2{
+    border: turquoise 1px solid;
+}
+#tagG{
+    width: 280px;
+    height: 360px;
+}
+#DG{
+    position: relative;
+    left: 8%;
+}
+#TV{
+    font-size: 40px;
+    text-align: center;
+    margin-right: 6%;
+    height: 150px;
+    line-height:130px;
+    background-color: rgb(97, 211, 207);
+    color: whitesmoke;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-shadow: 1px 0 black;
+}
+#TD{
+    font-size: 40px;
+    text-align: center;
+    margin-right: 6%;
+    height: 140px;
+    line-height:130px;
+    background-color: rgb(100, 171, 192);
+    color: rgb(255, 255, 255);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-shadow: 1px 0 rgb(0, 0, 0);
+}
+#GTC{
+    height: 180px;
+}
+#GTD{
+    margin-top: 0%;
+    height: 180px;
+}
